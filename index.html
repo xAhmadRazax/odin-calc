@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./resources/css/styles.css" />
+    <script type="module" src="./resources/js/index.js" defer></script>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1 class="header__title">Calculator</h1>
+      </div>
+    </header>
+
+    <main>
+      <section class="calc">
+        <div class="calc__container container">
+          <header class="calc__screen-container">
+            <input
+              data-calc-screen
+              class="calc__screen"
+              type="text"
+              placeholder="0"
+              readonly
+            />
+          </header>
+
+          <div class="calc__keypad">
+            <button
+              data-calc-button="reset"
+              data-button-operator="reset"
+              class="btn calc__button"
+              type="button"
+            >
+              AC
+            </button>
+            <button
+              data-calc-button="del"
+              data-button-operator="del"
+              class="btn calc__button"
+              type="button"
+            >
+              DE
+            </button>
+            <button
+              data-calc-button="%"
+              data-button-operator="%"
+              class="btn calc__button"
+              type="button"
+            >
+              %
+            </button>
+            <button
+              data-calc-button="/"
+              data-button-operator="/"
+              class="btn calc__button"
+              type="button"
+            >
+              /
+            </button>
+            <button
+              data-calc-button="7"
+              data-button-num="7"
+              class="btn calc__button"
+              type="button"
+            >
+              7
+            </button>
+            <button
+              data-calc-button="8"
+              data-button-num="8"
+              class="btn calc__button"
+              type="button"
+            >
+              8
+            </button>
+            <button
+              data-calc-button="9"
+              data-button-num="9"
+              class="btn calc__button"
+              type="button"
+            >
+              9
+            </button>
+            <button
+              data-calc-button="*"
+              data-button-operator="*"
+              class="btn calc__button"
+              type="button"
+            >
+              X
+            </button>
+            <button
+              data-calc-button="4"
+              data-button-num="4"
+              class="btn calc__button"
+              type="button"
+            >
+              4
+            </button>
+            <button
+              data-calc-button="5"
+              data-button-num="5"
+              class="btn calc__button"
+              type="button"
+            >
+              5
+            </button>
+            <button
+              data-calc-button="6"
+              data-button-num="6"
+              class="btn calc__button"
+              type="button"
+            >
+              6
+            </button>
+            <button
+              data-calc-button="-"
+              data-button-operator="-"
+              class="btn calc__button"
+              type="button"
+            >
+              -
+            </button>
+            <button
+              data-calc-button="1"
+              data-button-num="1"
+              class="btn calc__button"
+              type="button"
+            >
+              1
+            </button>
+            <button
+              data-calc-button="2"
+              data-button-num="2"
+              class="btn calc__button"
+              type="button"
+            >
+              2
+            </button>
+            <button
+              data-calc-button="3"
+              data-button-num="3"
+              class="btn calc__button"
+              type="button"
+            >
+              3
+            </button>
+            <button
+              data-calc-button="+"
+              data-button-operator="+"
+              class="btn calc__button"
+              type="button"
+            >
+              +
+            </button>
+            <button
+              data-calc-button="00"
+              data-button-num="00"
+              class="btn calc__button"
+              type="button"
+            >
+              00
+            </button>
+            <button
+              data-calc-button="0"
+              data-button-num="0"
+              class="btn calc__button"
+              type="button"
+            >
+              0
+            </button>
+            <button
+              data-calc-button="."
+              data-button-num="."
+              class="btn calc__button"
+              type="button"
+            >
+              .
+            </button>
+            <button
+              data-calc-button="="
+              data-button-operator="="
+              class="btn calc__button"
+              type="button"
+            >
+              =
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <small
+        >&copy; <time>2025</time> Etch A Sketch, ALL RIGHT RESERVED!
+      </small>
+    </footer>
+  </body>
+</html>
