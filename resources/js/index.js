@@ -148,7 +148,88 @@ function init() {
     if (!e.target.closest("[data-calc-button]")) {
       return;
     }
-    calcScreenInputEl.value += e.target.dataset.calcButton;
+    const calcButtonValue =
+      e.target.closest("[data-calc-button]").dataset.calcButton;
+    if (Number.isInteger(+calcButtonValue)) {
+      if (
+        calcScreenInputEl.value === "ERROR" ||
+        calcScreenInputEl.value === "INFINITY"
+      ) {
+        return (calcScreenInputEl.calcButtonValue = "");
+      }
+
+      calcScreenInputEl.value += calcButtonValue;
+    }
+    if (calcButtonValue === ".") {
+      if (hasPeriodInEachOperand(calcScreenInputEl.value)) {
+        return;
+      }
+      calcScreenInputEl.value += calcButtonValue;
+    }
+    if (
+      calcButtonValue === "=" &&
+      !hasPeriodBeforeOperator(calcScreenInputEl.value) &&
+      allowedToPerformCalculation(calcScreenInputEl.value)
+    ) {
+      return (calcScreenInputEl.value = performCalculation(
+        calcScreenInputEl.value
+      ));
+    }
+
+    if (calcButtonValue === "reset") {
+      return (calcScreenInputEl.value = "");
+    }
+    if (calcButtonValue == "del") {
+      const strLength = calcScreenInputEl.value.length;
+      const newCalcValue = calcScreenInputEl.value.substring(0, strLength - 1);
+      calcScreenInputEl.value = newCalcValue;
+    }
+    if (
+      allowedOperator.includes(calcButtonValue) &&
+      !firstStringCharIsOperator(calcScreenInputEl.value, calcButtonValue)
+    ) {
+      if (
+        calcScreenInputEl.value === "ERROR" ||
+        calcScreenInputEl.value === "INFINITY"
+      ) {
+        return (calcScreenInputEl.value = "");
+      }
+      // check if the user enter period and then operator (1.+) than convert it to 1.0 +
+      if (hasPeriodBeforeOperator(calcScreenInputEl.value)) {
+        calcScreenInputEl.value += 0;
+      }
+
+      // check if input el is empty and user enter operator then do nothing
+
+      //
+
+      if (hasConsecutiveOperators(calcScreenInputEl.value)) {
+        return (calcScreenInputEl.value = replaceLastOperator(
+          calcScreenInputEl.value,
+          calcButtonValue
+        ));
+
+        //
+
+        // return;
+      }
+      // this allowedToPerformCalculation allowed us to perform calculation when second operator appears
+      // or when we have string in operand operator operant form (1+3)
+      if (allowedToPerformCalculation(calcScreenInputEl.value) === false) {
+        calcScreenInputEl.value += calcButtonValue;
+      } else {
+        if (
+          performCalculation(calcScreenInputEl.value) === "ERROR" ||
+          performCalculation(calcScreenInputEl.value) === "INFINITY"
+        ) {
+          return (calcScreenInputEl.value = performCalculation(
+            calcScreenInputEl.value
+          ));
+        }
+        calcScreenInputEl.value =
+          performCalculation(calcScreenInputEl.value) + calcButtonValue;
+      }
+    }
   });
 }
 
