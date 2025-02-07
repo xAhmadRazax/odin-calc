@@ -4,8 +4,14 @@ const calc = new Calculator();
 
 const validOperators = calc.validOperators;
 function firstStringCharIsOperator(str, key) {
+  // checking if first array element is - than allowed user to add number after it
+  //  as we are not adding operator if they appear as first char
+  if (key === "-") {
+    return false;
+  }
   return str === "" && validOperators.includes(key);
 }
+// function firstStringCar/
 function hasConsecutiveOperators(str) {
   return validOperators.includes(str[str.length - 1]);
 }
@@ -31,12 +37,12 @@ function allowedToPerformCalculation(str) {
   // check for each string again the operating arr to find which operation we have to perform
   // than check if the array size is of three and than perform the operation
   const operator = validOperators.find((el) => str.includes(el));
-  const strArr = str.trim().split(operator);
+  const strArr = str
+    .trim()
+    .split(operator)
+    .filter((el) => el !== "");
 
-  // the reason im checking for strArr.at(-1) === "" is when we have a input
-  // like 123+ and we split it it would ends in 2 arrays arr[0] === 123 and
-  // arr[1] === "" which we dont want
-  if (strArr.at(-1) === "" || strArr.length < 2) {
+  if (strArr.length < 2) {
     return false;
   }
   return true;
@@ -44,7 +50,12 @@ function allowedToPerformCalculation(str) {
 
 function performCalculation(str) {
   const operator = validOperators.find((el) => str.includes(el));
-  const strArr = str.split(operator);
+  const strArr = str.split(operator).filter((el) => el !== "");
+  //  since split would remove all the operator even - with first num
+  // so we are checking if str at first has - than add it to the str in arr element
+  if (str[0] === "-" && !strArr[0].startsWith("-")) {
+    strArr[0] = "-" + strArr.at(0);
+  }
   return calc.methods[operator](+strArr[0], +strArr[1]);
 }
 
