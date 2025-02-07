@@ -36,19 +36,15 @@ function allowedToPerformCalculation(str) {
   // to do that we every time user click on a operation remove the last operation and
   // check for each string again the operating arr to find which operation we have to perform
   // than check if the array size is of three and than perform the operation
-  const operator = validOperators.find((el, index) => {
-    if (index === 1 && el === "-") {
-      return false;
-    }
-    return str.includes(el);
+  const operator = validOperators.find((el) => {
+    // since for negative number we will have - as first char we will start checking for operate at position 2
+    return str.substring(1).includes(el);
   });
 
-  console.log(operator, str);
   const strArr = str
     .trim()
     .split(operator)
     .filter((el) => el !== "");
-  console.log(strArr);
   if (strArr.length < 2) {
     return false;
   }
@@ -56,20 +52,16 @@ function allowedToPerformCalculation(str) {
 }
 
 function performCalculation(str) {
-  const operator = validOperators.find((el, index) => {
-    if (index === 1 && el === "-") {
-      return false;
-    }
-    return str.includes(el);
+  const operator = validOperators.find((el) => {
+    // since for negative number we will have - as first char we will start checking for operate at position 2f
+    return str.substring(1).includes(el);
   });
   const strArr = str.split(operator).filter((el) => el !== "");
-  console.log(operator, strArr);
   //  since split would remove all the operator even - with first num
   // so we are checking if str at first has - than add it to the str in arr element
   if (str[0] === "-" && !strArr[0].startsWith("-")) {
     strArr[0] = "-" + strArr.at(0);
   }
-  console.log("i will perform my duties");
   return calc.methods[operator](+strArr[0], +strArr[1]);
 }
 
@@ -87,7 +79,6 @@ function equalsInputHandler(calcScreenInputEl, inputValue) {
     !hasPeriodBeforeOperator(calcScreenInputEl.value) &&
     allowedToPerformCalculation(calcScreenInputEl.value)
   ) {
-    console.log("performing calculation");
     return (calcScreenInputEl.value = performCalculation(
       calcScreenInputEl.value
     ));
@@ -141,9 +132,8 @@ function operatorInputHandler(calcScreenInputEl, inputValue) {
     // this allowedToPerformCalculation allowed us to perform calculation when second operator appears
     // or when we have string in operand operator operant form (1+3)
     if (allowedToPerformCalculation(calcScreenInputEl.value) === false) {
-      calcScreenInputEl.value += inputValue;
+      return (calcScreenInputEl.value += inputValue);
     } else {
-      console.log("IM HEREEEE");
       if (
         performCalculation(calcScreenInputEl.value) === "ERROR" ||
         performCalculation(calcScreenInputEl.value) === "INFINITY"
