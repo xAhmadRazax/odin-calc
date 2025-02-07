@@ -65,7 +65,7 @@ video {
 }
 
 svg {
-  display: block;
+  display: inline-block;
 }
 
 ul,
@@ -153,6 +153,7 @@ main {
   font-family: var(--FF-QUANTICO);
   text-align: right;
   letter-spacing: 0.1em;
+  outline: none;
 }
 
 .calc__keypad {
@@ -175,4 +176,29 @@ main {
 .calc__button:active {
   scale: 0.9;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.676);
+}
+/*
+------------------------------------------
+|   FOOTER                               |
+------------------------------------------
+*/
+
+.footer {
+  margin-block-start: 9rem;
+  background-color: #b8b8b8;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: blue;
+}
+.footer svg {
+  width: 2rem;
+  height: 2rem;
 }

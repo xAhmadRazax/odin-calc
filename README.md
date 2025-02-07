@@ -2,7 +2,7 @@ view at:https://xahmadrazax.github.io/odin-calc/
 
 # odin-calc
 
-A basic calculator that allow users to perform calculation
+A basic calculator that allow users to perform calculation on One pair of operands at a time
 
 **Features**
 

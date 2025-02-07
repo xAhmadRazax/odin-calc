@@ -5,6 +5,8 @@ export function Calculator() {
     return +value.toFixed(MAX_ALLOW_DIGITS_AFTER_DECIMALS);
   }
 
+  this.validOperators = ["+", "-", "*", "/", "%"];
+
   this.methods = {
     "+": function (a, b) {
       return roundResult(a + b);
@@ -35,6 +37,7 @@ export function Calculator() {
   };
 
   this.addMethod = function (name, def) {
+    this.validOperators.push(name);
     this.methods[name] = def;
   };
 }
