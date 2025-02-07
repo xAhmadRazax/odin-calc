@@ -11,4 +11,4 @@ A basic calculator that allow users to perform calculation on One pair of operan
 
 **learning**
 
-- function parameters for primitive types are store by value means wont be change the original value if we make changes in it inside the function but reference will changes if we make changes to it inside the function
+- function parameters for primitive types are store by value means wont be change the original value if we make changes in it inside the function but objects (store by reference) will changes if we make changes to it inside the function
